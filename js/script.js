@@ -1,5 +1,5 @@
 class ToDoList {
-  constructor(list) {
+  constructor(list = []) {
     this.list = list
   }
 
@@ -49,8 +49,9 @@ $(document).ready(function () {
 
   let editId = null
 
-  $("#add").click(function () {
-    const name = $(".input").val()
+  const addButton = document.querySelector("#add")
+  addButton.addEventListener('click', function () {
+    const name = document.querySelector(".input").value
     if (name) {
       toDoList.create(name)
     }
