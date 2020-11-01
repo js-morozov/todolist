@@ -1,33 +1,3 @@
-class ToDoList {
-  constructor(list) {
-    this.list = list
-  }
-
-  // Создание элемента
-  create(name) {
-    let id = 1
-    if (this.list.length) {
-      id = this.list[this.list.length - 1].id + 1
-    }
-    this.list.push({ id, name })
-  }
-
-  // Редактирование элемента по id
-  edit(id, newValue) {
-    this.list = this.list.map(item => {
-      if (item.id === id) {
-        item.name = newValue
-      }
-      return item
-    })
-  }
-
-  // Удаление элемента по id
-  remove(id) {
-    this.list = this.list.filter(item => item.id !== id)
-  }
-}
-
 $(document).ready(function () {
   // Вывод элементов
   function displayToDolistItems(list) {
@@ -49,10 +19,12 @@ $(document).ready(function () {
 
   let editId = null
 
-  $("#add").click(function () {
-    const name = $(".input").val()
+  const addButton = document.querySelector("#add")
+  addButton.addEventListener('click', function () {
+    const name = document.querySelector(".input").value
     if (name) {
       toDoList.create(name)
+      document.querySelector(".input").value = ""
     }
     displayToDolistItems(toDoList.list)
   })
